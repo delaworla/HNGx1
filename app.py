@@ -27,8 +27,8 @@ async def get_info(
             "Current day of the week": current_day,
             "Current UTC time": utc_time.strftime('%Y-%m-%d %H:%M:%S %Z'),
             "Track": track,
-            "GitHub URL of the file being run": f"https://github.com/dela/back/blob/main/main.py",
-            "GitHub URL of the full source code": f"https://github.com/dela/back",
+            "GitHub URL of the file being run": f"https://github.com/delaworla/backend_track/app.py",
+            "GitHub URL of the full source code": f"https://github.com/delaworla/backend_track",
         }
 
         return response_data
