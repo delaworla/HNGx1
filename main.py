@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException, Query
 from datetime import datetime
-from pytz import timezone
 import os
 
 app = FastAPI()
+
 
 @app.get("/get_info")
 async def get_info(
@@ -22,14 +22,14 @@ async def get_info(
         raise HTTPException(status_code=400, detail="Invalid UTC offset")
 
     # Get GitHub URLs from environment variables
-    github_url_file = os.environ.get('GITHUB_URL_FILE', 'Not available')
-    github_url_source = os.environ.get('GITHUB_URL_SOURCE', 'Not available')
+    github_url_file = os.environ.get("GITHUB_URL_FILE", "Not available")
+    github_url_source = os.environ.get("GITHUB_URL_SOURCE", "Not available")
 
     # Create the JSON response
     response_data = {
         "Slack name": slack_name,
         "Current day of the week": current_day,
-        "Current UTC time": utc_time.strftime('%Y-%m-%d %H:%M:%S %Z'),
+        "Current UTC time": utc_time.strftime("%Y-%m-%d %H:%M:%S %Z"),
         "Track": track,
         "GitHub URL of the file being run": github_url_file,
         "GitHub URL of the full source code": github_url_source,
