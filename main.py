@@ -1,45 +1,32 @@
-from flask import Flask, request, jsonify
-import datetime
-import pytz
+from fastapi import FastAPI, HTTPException, Query
+from datetime import datetime
+from pytz import timezone
 import os
 
-app = Flask(__name__)
+app = FastAPI()
 
+@app.get("/api")
+def api(slack_name: str, track: str):
+    # Get the current day of the week.
+    current_day = datetime.datetime.now().weekday()
 
-@app.route("/get_info", methods=["GET"])
-def get_info():
-    # Get query parameters
-    slack_name = request.args.get("slack_name")
-    track = request.args.get("track")
+    # Get the current UTC time.
+    current_utc_time = datetime.datetime.utcnow()
 
-    # Get current day of the week
-    current_day = datetime.datetime.now().strftime("%A")
+    # Get the GitHub URL of the file being run.
+    file_url = "https://github.com/delaworla/backend_track/main.py"
 
-    # Get current UTC time with validation of +/-2
-    utc_time = datetime.datetime.now(pytz.utc)
-    utc_offset = utc_time.utcoffset().total_seconds() / 3600  # Convert to hours
+    # Get the GitHub URL of the full source code.
+    repo_url = "https://github.com/delaworla/backend_track"
 
-    if abs(utc_offset) <= 2:
-        utc_time_str = utc_time.strftime("%Y-%m-%d %H:%M:%S %Z")
-    else:
-        return jsonify({"error": "Invalid UTC offset"}), 400
-
-    # Get GitHub URLs
-    github_url_file = os.environ.get("GITHUB_URL_FILE", "Not available")
-    github_url_source = os.environ.get("GITHUB_URL_SOURCE", "Not available")
-
-    # Create the JSON response
-    response_data = {
-        "Slack name": slack_name,
-        "Current day of the week": current_day,
-        "Current UTC time": utc_time_str,
-        "Track": track,
-        "GitHub URL of the file being run": github_url_file,
-        "GitHub URL of the full source code": github_url_source,
+    # Create the response payload.
+    response = {
+        "slack_name": slack_name,
+        "current_day": current_day,
+        "current_utc_time": current_utc_time,
+        "track": track,
+        "file_url": file_url,
+        "repo_url": repo_url,
     }
 
-    return jsonify(response_data), 200
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    return response
