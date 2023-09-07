@@ -19,7 +19,7 @@ if abs(utc_offset_minutes) > 2:
         # Create the JSON response
 
 
-@app.get("/")
+@app.get("/api")
 async def get_info():
     
     
@@ -32,6 +32,8 @@ async def get_info():
             "GitHub URL of the full source code": f"https://github.com/delaworla/backend_track",
         }
     return response_data
+
+    
 if __name__ == "__main__":
     import uvicorn
 
