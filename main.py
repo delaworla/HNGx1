@@ -19,7 +19,7 @@ if abs(utc_offset_minutes) > 2:
         # Create the JSON response
 
 
-@app.get("/api")
+@app.get("/")
 async def get_info():
     
     
