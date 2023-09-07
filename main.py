@@ -4,6 +4,7 @@ from pytz import timezone
 
 app = FastAPI()
 
+
 @app.get("/api")
 async def get_info(
     slack_name: str = Query(..., description="Slack name"),
@@ -16,7 +17,9 @@ async def get_info(
 
         # Get current UTC time with validation of +/-2 minutes
         utc_time = datetime.now(utc_timezone)
-        utc_offset_minutes = utc_time.utcoffset().total_seconds() / 60  # Convert to minutes
+        utc_offset_minutes = (
+            utc_time.utcoffset().total_seconds() / 60
+        )  # Convert to minutes
 
         if abs(utc_offset_minutes) > 2:
             raise HTTPException(status_code=400, detail="Invalid UTC offset")
@@ -25,9 +28,9 @@ async def get_info(
         response_data = {
             "Slack name": slack_name,
             "Current day of the week": current_day,
-            "Current UTC time": utc_time.strftime('%Y-%m-%d %H:%M:%S %Z'),
+            "Current UTC time": utc_time.strftime("%Y-%m-%d %H:%M:%S %Z"),
             "Track": track,
-            "GitHub URL of the file being run": f"https://github.com/delaworla/backend_track/app.py",
+            "GitHub URL of the file being run": f"https://github.com/delaworla/backend_track/main.py",
             "GitHub URL of the full source code": f"https://github.com/delaworla/backend_track",
         }
 
@@ -36,6 +39,8 @@ async def get_info(
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=80)
