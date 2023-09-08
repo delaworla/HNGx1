@@ -7,16 +7,15 @@ app = FastAPI()
 utc_timezone = timezone("UTC")
 current_day = datetime.now(utc_timezone).strftime("%A")
 
-        # Get current UTC time with validation of +/-2 minutes
+       
 utc_time = datetime.now(utc_timezone)
 utc_offset_minutes = (
             utc_time.utcoffset().total_seconds() / 60
-        )  # Convert to minutes
+        )  
 
 if abs(utc_offset_minutes) > 2:
     raise HTTPException(status_code=400, detail="Invalid UTC offset")
 
-        # Create the JSON response
 
 
 @app.get("/")
