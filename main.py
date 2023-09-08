@@ -31,7 +31,7 @@ async def api(slack_name: str = None, track: str = None):
             "current_day": current_day,
             "utc_time": utc_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
             "track": track,
-            "github_file_url": f"https://github.com/delaworla/backend_track/main.py",
+            "github_file_url": f"https://github.com/delaworla/backend_track/blob/main/main.py",
             "github_repo_url": f"https://github.com/delaworla/backend_track",
             "status_code": status_code,
         }
