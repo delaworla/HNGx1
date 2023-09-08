@@ -23,17 +23,11 @@ async def get_info():
     
     
     response_data = {
-            "Slack name": "Sam",
+            "Slack name": slack_name,
             "Current day of the week": current_day,
             "Current UTC time": utc_time.strftime("%Y-%m-%d %H:%M:%S %Z"),
-            "Track": "Back",
+            "Track": track,
             "GitHub URL of the file being run": f"https://github.com/delaworla/backend_track/main.py",
             "GitHub URL of the full source code": f"https://github.com/delaworla/backend_track",
         }
     return response_data
-
-    
-if __name__ == "__main__":
-    import uvicorn
-
-    uvicorn.run(app, host="0.0.0.0", port=80)
