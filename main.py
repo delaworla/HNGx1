@@ -27,12 +27,12 @@ async def api(slack_name: str = None, track: str = None):
     
     
     response_data = {
-            "Slack name": slack_name,
-            "Current day of the week": current_day,
-            "Current UTC time": utc_time.strftime("%Y-%m-%dT%H:%M:%S %Z"),
-            "Track": track,
-            "GitHub URL of the file being run": f"https://github.com/delaworla/backend_track/main.py",
-            "GitHub URL of the full source code": f"https://github.com/delaworla/backend_track",
+            "slack_name": slack_name,
+            "current_day": current_day,
+            "utc_time": utc_time.strftime("%Y-%m-%dT%H:%M:%S %Z"),
+            "track": track,
+            "github_file_url": f"https://github.com/delaworla/backend_track/main.py",
+            "github_repo_url": f"https://github.com/delaworla/backend_track",
             "status_code": status_code,
         }
     return response_data
