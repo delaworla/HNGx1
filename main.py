@@ -9,7 +9,7 @@ app = FastAPI()
 
 
 @app.get("/api")
-async def api(slack_name: str, track: str):
+async def api(slack_name: str = None, track: str = None, utc_time: str = None, github_file_url: str = None, github_repo_url: str = None, current_day: str = None):
 
     utc_timezone = timezone("UTC")
     current_day = datetime.now(utc_timezone).strftime("%A")
