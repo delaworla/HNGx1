@@ -19,7 +19,7 @@ if abs(utc_offset_minutes) > 2:
 
 
 
-@app.get("/")
+@app.get("/api")
 async def api(slack_name: str, track: str):
     
     
