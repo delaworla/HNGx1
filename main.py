@@ -5,19 +5,7 @@ from pytz import timezone
 
 app = FastAPI()
 
-utc_timezone = timezone("UTC")
-current_day = datetime.now(utc_timezone).strftime("%A")
 
-       
-utc_time = datetime.now(utc_timezone)
-utc_offset_minutes = (
-            utc_time.utcoffset().total_seconds() / 60
-        )  
-
-if abs(utc_offset_minutes) > 2:
-    raise HTTPException(status_code=400, detail="Invalid UTC offset")
-
-status_code = 200
 
 
 @app.get("/api")
