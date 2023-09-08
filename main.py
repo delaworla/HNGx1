@@ -29,7 +29,7 @@ async def api(slack_name: str = None, track: str = None):
     response_data = {
             "slack_name": slack_name,
             "current_day": current_day,
-            "utc_time": utc_time.strftime("%Y-%m-%dT%H:%M:%S %Z"),
+            "utc_time": utc_time.strftime("%Y-%m-%dT%H:%M:%SZ"),
             "track": track,
             "github_file_url": f"https://github.com/delaworla/backend_track/main.py",
             "github_repo_url": f"https://github.com/delaworla/backend_track",
