@@ -17,6 +17,7 @@ utc_offset_minutes = (
 if abs(utc_offset_minutes) > 2:
     raise HTTPException(status_code=400, detail="Invalid UTC offset")
 
+status_code = 200
 
 
 @app.get("/api")
@@ -30,6 +31,6 @@ async def api(slack_name: str, track: str):
             "Track": track,
             "GitHub URL of the file being run": f"https://github.com/delaworla/backend_track/main.py",
             "GitHub URL of the full source code": f"https://github.com/delaworla/backend_track",
-            "Status code": print(response.status_code)
+            "status_code": status_code,
         }
     return response_data
