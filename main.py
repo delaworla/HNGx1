@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Query
 from datetime import datetime
 from pytz import timezone
+import response
 
 app = FastAPI()
 
@@ -29,5 +30,6 @@ async def get_info():
             "Track": track,
             "GitHub URL of the file being run": f"https://github.com/delaworla/backend_track/main.py",
             "GitHub URL of the full source code": f"https://github.com/delaworla/backend_track",
+            "Status code": print(response.status_code)
         }
     return response_data
